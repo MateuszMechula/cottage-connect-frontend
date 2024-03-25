@@ -1,13 +1,38 @@
 <div>
   <mat-toolbar color="primary" style="padding: 10px 30px">
     <button mat-icon-button>
-        <mat-icon>menu</mat-icon>
+      <mat-icon>menu</mat-icon>
     </button>
     <a routerLink="/">Cottage-Connect</a>
     <div class="w-full bg-amber-300"></div>
 
+    <div *ngIf="isLoggedIn(); else notLoggedInBlocks">
+      <div *ngIf="auth.getUserDetail() as userDetail">
+        <div class="flex gap-5 items-center">
+          <a [matMenuTriggerFor]="menu" class="flex gap-2 cursor-pointer items-center">
+            <mat-icon>arrow_drop_down</mat-icon>
+            {{ userDetail?.email }}
+          </a>
+          <mat-menu #menu="matMenu">
+            <button [routerLink]="['account', 1]" mat-menu-item>
+              <mat-icon>account_circle</mat-icon>
+              <span>View Profile</span>
+            </button>
+
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>
+                logout
+              </mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #notLoggedInBlocks>
       <div>
-        <div class="flex gap5 items-center">
+        <div class="flex gap-5 items-center">
           <a mat-button routerLink="/login">
             Login
           </a>
@@ -16,6 +41,7 @@
           </a>
         </div>
       </div>
+    </ng-template>
 
   </mat-toolbar>
 </div>

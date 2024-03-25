@@ -5,6 +5,7 @@ import {FormService} from "../../services/form.service";
 import {AuthService} from "../../services/auth.service";
 import {LoginRequest} from "../../interfaces/login-request";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent {
   constructor(
     private formService: FormService,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {
   }
 
@@ -56,5 +58,6 @@ export class LoginComponent {
           });
         }
       });
+    this.router.navigate([''])
   }
 }

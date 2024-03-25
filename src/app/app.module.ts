@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {AppRoutingModule} from './app-routing.module';
@@ -14,6 +14,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {provideHttpClient} from "@angular/common/http";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -30,11 +31,11 @@ import {provideHttpClient} from "@angular/common/http";
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
     ReactiveFormsModule,
     FormsModule
   ],
   providers: [
-    provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient()
   ],
