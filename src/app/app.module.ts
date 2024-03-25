@@ -15,13 +15,16 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {provideHttpClient} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
+import {RegisterComponent} from './pages/register/register.component';
+import {MatOption, MatSelect} from "@angular/material/select";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ import {MatMenuModule} from "@angular/material/menu";
     MatInputModule,
     MatMenuModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSelect,
+    MatOption
   ],
   providers: [
     provideAnimationsAsync(),
