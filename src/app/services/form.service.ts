@@ -6,6 +6,7 @@ import {LoginForm, RegisterForm} from "../models/forms.model";
   providedIn: 'root'
 })
 export class FormService {
+  private phoneRegExp = /^\d{9}$/;
 
   initLoginForm(): FormGroup<LoginForm> {
     return new FormGroup({
@@ -30,16 +31,8 @@ export class FormService {
 
   initRegisterForm(): FormGroup<RegisterForm> {
     return new FormGroup({
-      email: new FormControl('', {
-        validators: [Validators.required, Validators.email],
-        nonNullable: true,
-      }),
       login: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(50),
-        ],
+        validators: [Validators.required, Validators.email],
         nonNullable: true,
       }),
       password: new FormControl('', {
@@ -58,21 +51,56 @@ export class FormService {
         ],
         nonNullable: true,
       }),
+      role: new FormControl('', {
+        validators: [
+          Validators.required,
+        ],
+        nonNullable: true,
+      }),
+      firstName: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(75),
+        ],
+        nonNullable: true,
+      }),
+      lastName: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(75),
+        ],
+        nonNullable: true,
+      }),
+      phone: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.pattern(this.phoneRegExp)
+        ],
+        nonNullable: true,
+      }),
     });
   }
 
-  getErrorMessage(control: FormControl): string {
+  getErrorMessage(control: FormControl, matchingControl?: FormControl): string {
     if (control.hasError('required')) {
-      return 'Kontrolka jest wymagana';
+      return 'Field is required';
     }
     if (control.hasError('minlength')) {
-      return `Minimalna ilość znaków: ${control.errors?.['minlength']?.requiredLength}.`;
+      return `Minimum length required: ${control.errors?.['minlength']?.requiredLength}.`;
     }
     if (control.hasError('maxlength')) {
-      return `Maksymalna ilość znaków: ${control.errors?.['maxlength']?.requiredLength}.`;
+      return `Maximum length allowed: ${control.errors?.['maxlength']?.requiredLength}.`;
     }
     if (control.hasError('email')) {
-      return `Niepoprawny adres email`;
+      return `Invalid email address`;
+    }
+    if (control.hasError('pattern')) {
+      return `Invalid phone number format`;
+    }
+    if (matchingControl && control.value !== matchingControl.value) {
+      return 'Passwords do not match';
     }
     return '';
   }

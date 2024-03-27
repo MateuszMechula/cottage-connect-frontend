@@ -7,5 +7,8 @@ export interface LoginForm {
 
 export interface RegisterForm extends LoginForm {
   repeatPassword: FormControl<string>;
-  email: FormControl<string>;
+  role: FormControl<string>;
+  firstName: FormControl<string>;
+  lastName: FormControl<string>;
+  phone: FormControl<string>;
 }
