@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "../interfaces/login-request";
 import {jwtDecode} from "jwt-decode";
 import {RegisterRequest} from "../interfaces/register-request";
+import {UserDetail} from "../interfaces/user-detail";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,11 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiUrl}auth/register`, data);
   }
 
+  getDetail(): Observable<UserDetail> {
+    return this.http.get<UserDetail>(`${this.apiUrl}auth/account/details`);
+  }
+
+
   getUserDetail = () => {
     const token = this.getToken();
     if (!token) {
@@ -44,7 +50,6 @@ export class AuthService {
     return userDetail;
 
   }
-
 
   isLoggedIn = (): boolean => {
     const token = this.getToken;
@@ -71,6 +76,5 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  private getToken = (): string | null => localStorage.getItem(this.tokenKey) || '';
-
+  public getToken = (): string | null => localStorage.getItem(this.tokenKey) || '';
 }

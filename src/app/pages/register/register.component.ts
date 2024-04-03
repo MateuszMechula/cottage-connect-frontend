@@ -56,6 +56,7 @@ export class RegisterComponent {
           duration: 5000,
           horizontalPosition: 'center'
         })
+        this.router.navigate(['/login'])
       },
       error: (err: HttpErrorResponse) => {
         if (err!.status == 400) {
@@ -67,6 +68,5 @@ export class RegisterComponent {
         }
       }
     });
-    this.router.navigate(['/login'])
   }
 }

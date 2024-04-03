@@ -13,10 +13,12 @@ import {HomeComponent} from './pages/home/home.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {provideHttpClient} from "@angular/common/http";
+import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
 import {RegisterComponent} from './pages/register/register.component';
 import {MatOption, MatSelect} from "@angular/material/select";
+import {AccountComponent} from './pages/account/account.component';
+import {tokenInterceptor} from "./interceptor/token.interceptor";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {MatOption, MatSelect} from "@angular/material/select";
     LoginComponent,
     NavbarComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import {MatOption, MatSelect} from "@angular/material/select";
   ],
   providers: [
     provideAnimationsAsync(),
-    provideHttpClient()
+    provideHttpClient(withInterceptors([tokenInterceptor]))
   ],
   bootstrap: [AppComponent]
 })
