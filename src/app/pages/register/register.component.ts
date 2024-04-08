@@ -7,7 +7,6 @@ import {RegisterRequest} from "../../interfaces/register-request";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-import {ValidationError} from "../../interfaces/validation-error";
 
 @Component({
   selector: 'app-register',
@@ -18,7 +17,6 @@ export class RegisterComponent {
   registerForm: FormGroup<RegisterForm> = this.formService.initRegisterForm();
   confirmPasswordHide: boolean = true;
   passwordHide: boolean = true;
-  validationError!: ValidationError;
 
   constructor(private formService: FormService,
               private authService: AuthService,

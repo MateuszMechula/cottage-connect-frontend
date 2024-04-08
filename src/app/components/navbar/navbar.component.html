@@ -3,7 +3,9 @@
     <button mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
-    <a routerLink="/">Cottage-Connect</a>
+    <a class="flex gap-1 cursor-pointer items-center" routerLink="/">Cottage-Connect
+      <mat-icon>home</mat-icon>
+    </a>
     <div class="w-full bg-amber-300"></div>
 
     <div *ngIf="isLoggedIn(); else notLoggedInBlocks">
@@ -26,6 +28,22 @@
               <span>Logout</span>
             </button>
           </mat-menu>
+          <div *ngIf="auth.getUserRole()?.includes('OWNER')">
+            <a [matMenuTriggerFor]="villageMenu" class="flex gap-2 cursor-pointer items-center">
+              <mat-icon class="action-icon">location_city</mat-icon>
+              <span>Village</span>
+            </a>
+            <mat-menu #villageMenu="matMenu">
+              <button mat-menu-item [routerLink]="['/villages']">
+                <mat-icon>list</mat-icon>
+                <span>List of Villages</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>add</mat-icon>
+                <span>Add Village</span>
+              </button>
+            </mat-menu>
+          </div>
         </div>
       </div>
     </div>

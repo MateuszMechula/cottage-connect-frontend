@@ -19,6 +19,9 @@ import {RegisterComponent} from './pages/register/register.component';
 import {MatOption, MatSelect} from "@angular/material/select";
 import {AccountComponent} from './pages/account/account.component';
 import {tokenInterceptor} from "./interceptor/token.interceptor";
+import {VillagesComponent} from './pages/villages/villages.component';
+import {MatCardModule} from "@angular/material/card";
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import {tokenInterceptor} from "./interceptor/token.interceptor";
     NavbarComponent,
     HomeComponent,
     RegisterComponent,
-    AccountComponent
+    AccountComponent,
+    VillagesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import {tokenInterceptor} from "./interceptor/token.interceptor";
     ReactiveFormsModule,
     FormsModule,
     MatSelect,
-    MatOption
+    MatOption,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync(),

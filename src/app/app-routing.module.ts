@@ -5,6 +5,8 @@ import {HomeComponent} from "./pages/home/home.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {AccountComponent} from "./pages/account/account.component";
 import {authGuard} from "./guards/auth.guard";
+import {VillagesComponent} from "./pages/villages/villages.component";
+import {roleGuard} from "./guards/role.guard";
 
 const routes: Routes = [
   {
@@ -23,6 +25,14 @@ const routes: Routes = [
     path: 'account',
     component: AccountComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'villages',
+    component: VillagesComponent,
+    canActivate: [roleGuard],
+    data: {
+      roles: ['OWNER'],
+    }
   }
 ];
 

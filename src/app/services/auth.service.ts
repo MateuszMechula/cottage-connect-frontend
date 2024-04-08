@@ -13,6 +13,7 @@ import {UserDetail} from "../interfaces/user-detail";
 })
 export class AuthService {
   apiUrl: string = environment.apiUrl;
+  role: string[] | undefined;
   private tokenKey = 'token';
 
   constructor(private http: HttpClient) {
@@ -23,6 +24,8 @@ export class AuthService {
       map((response) => {
         if (response) {
           localStorage.setItem(this.tokenKey, response.access_token)
+          const userRole = this.getUserRole();
+          this.role = userRole ? userRole : [];
         }
         return response;
       })
@@ -77,4 +80,17 @@ export class AuthService {
   }
 
   public getToken = (): string | null => localStorage.getItem(this.tokenKey) || '';
+
+  public getUserRole = (): string[] | null => {
+    const token = this.getToken();
+    if (!token) {
+      return null;
+    }
+    const decodedToken: any = jwtDecode(token);
+    if (decodedToken.role && decodedToken.role.length) {
+      let authority = decodedToken.role;
+      return authority;
+    }
+    return [];
+  }
 }
