@@ -5,8 +5,9 @@ import {HomeComponent} from "./pages/home/home.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {AccountComponent} from "./pages/account/account.component";
 import {authGuard} from "./guards/auth.guard";
-import {VillagesComponent} from "./pages/villages/villages.component";
+import {VillageDetailsComponent} from "./pages/village-details/village-details.component";
 import {roleGuard} from "./guards/role.guard";
+import {VillageAddComponent} from "./pages/village-add/village-add.component";
 
 const routes: Routes = [
   {
@@ -28,7 +29,15 @@ const routes: Routes = [
   },
   {
     path: 'villages',
-    component: VillagesComponent,
+    component: VillageDetailsComponent,
+    canActivate: [roleGuard],
+    data: {
+      roles: ['OWNER'],
+    }
+  },
+  {
+    path: 'villages-add',
+    component: VillageAddComponent,
     canActivate: [roleGuard],
     data: {
       roles: ['OWNER'],

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginForm, RegisterForm} from "../models/forms.model";
+import {LoginForm, RegisterForm, VillageAddForm, VillageAddressForm} from "../models/forms.model";
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +82,44 @@ export class FormService {
       }),
     });
   }
+  initVillageForm(): FormGroup<VillageAddForm> {
+    return new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+        nonNullable: true,
+      }),
+      description: new FormControl('', {
+        validators: [Validators.maxLength(200)],
+        nonNullable: true,
+      })
+    });
+  }
+
+  initVillageAddressForm(): FormGroup<VillageAddressForm> {
+    return new FormGroup({
+      street: new FormControl('',{
+        validators: [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+        nonNullable: true,
+      }),
+      postalCode: new FormControl('',{
+        validators: [Validators.required, Validators.pattern(/^\d{2}-\d{3}$/)],
+        nonNullable: true,
+      }),
+      city: new FormControl('',{
+        validators: [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+        nonNullable: true,
+      }),
+      voivodeship: new FormControl('',{
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      country: new FormControl('',{
+        validators: [Validators.required],
+        nonNullable: true,
+      })
+    })
+  }
+
 
   getErrorMessage(control: FormControl, matchingControl?: FormControl): string {
     if (control.hasError('required')) {

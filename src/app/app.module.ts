@@ -16,11 +16,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
 import {RegisterComponent} from './pages/register/register.component';
-import {MatOption, MatSelect} from "@angular/material/select";
+import {MatOption, MatSelect, MatSelectModule} from "@angular/material/select";
 import {AccountComponent} from './pages/account/account.component';
 import {tokenInterceptor} from "./interceptor/token.interceptor";
-import {VillagesComponent} from './pages/villages/villages.component';
+import {VillageDetailsComponent} from './pages/village-details/village-details.component';
 import {MatCardModule} from "@angular/material/card";
+import {VillageAddComponent} from "./pages/village-add/village-add.component";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatCardModule} from "@angular/material/card";
     HomeComponent,
     RegisterComponent,
     AccountComponent,
-    VillagesComponent
+    VillageDetailsComponent,
+    VillageAddComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import {MatCardModule} from "@angular/material/card";
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatMenuModule,
     ReactiveFormsModule,
     FormsModule,

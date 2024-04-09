@@ -7,10 +7,10 @@ import {VillageDetail} from "../../interfaces/village-detail";
 
 @Component({
   selector: 'app-villages',
-  templateUrl: './villages.component.html',
-  styleUrl: './villages.component.css'
+  templateUrl: './village-details.component.html',
+  styleUrl: './village-details.component.css'
 })
-export class VillagesComponent {
+export class VillageDetailsComponent {
   village$ = new BehaviorSubject<VillageDetail[]>([]);
 
   constructor(private villagesService: VillagesService,
