@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {VillagesService} from "../../services/villages.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {VillageAdd} from "../../interfaces/village-add";
 import {VillageAddForm, VillageAddressForm} from "../../models/forms.model";
 import {Router} from "@angular/router";
@@ -29,6 +29,10 @@ export class VillageAddComponent {
               private router: Router) {
   }
 
+  getErrorMessage(control: FormControl) {
+    return this.formService.getErrorMessage(control);
+  }
+
   addVillage() {
     const addVillageRequest = this.villageAddForm.controls;
     const addressVillageRequest = this.villageAddressForm.controls;
@@ -52,6 +56,7 @@ export class VillageAddComponent {
   }
 
   private createVillage(addVillageRequest: VillageAddForm, addressVillageRequest: VillageAddressForm) {
+    debugger;
     const villageAddRequest: VillageAdd = {
       name: addVillageRequest.name.value,
       description: addVillageRequest.description.value,

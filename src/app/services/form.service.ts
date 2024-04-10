@@ -82,6 +82,7 @@ export class FormService {
       }),
     });
   }
+
   initVillageForm(): FormGroup<VillageAddForm> {
     return new FormGroup({
       name: new FormControl('', {
@@ -89,7 +90,7 @@ export class FormService {
         nonNullable: true,
       }),
       description: new FormControl('', {
-        validators: [Validators.maxLength(200)],
+        validators: [Validators.required, Validators.maxLength(200)],
         nonNullable: true,
       })
     });
@@ -97,23 +98,23 @@ export class FormService {
 
   initVillageAddressForm(): FormGroup<VillageAddressForm> {
     return new FormGroup({
-      street: new FormControl('',{
+      street: new FormControl('', {
         validators: [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
         nonNullable: true,
       }),
-      postalCode: new FormControl('',{
+      postalCode: new FormControl('', {
         validators: [Validators.required, Validators.pattern(/^\d{2}-\d{3}$/)],
         nonNullable: true,
       }),
-      city: new FormControl('',{
+      city: new FormControl('', {
         validators: [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
         nonNullable: true,
       }),
-      voivodeship: new FormControl('',{
+      voivodeship: new FormControl('', {
         validators: [Validators.required],
         nonNullable: true,
       }),
-      country: new FormControl('',{
+      country: new FormControl('Polska', {
         validators: [Validators.required],
         nonNullable: true,
       })
@@ -135,7 +136,10 @@ export class FormService {
       return `Invalid email address`;
     }
     if (control.hasError('pattern')) {
-      return `Invalid phone number format`;
+      return `Invalid format`;
+    }
+    if (control.hasError('postalCode')) {
+      return `Invalid postal code format. It should be XX-XXX where X is any digit.`;
     }
     if (matchingControl && control.value !== matchingControl.value) {
       return 'Passwords do not match';

@@ -9,11 +9,12 @@ import {Observable} from "rxjs";
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
-export class AccountComponent implements OnInit{
+export class AccountComponent implements OnInit {
   userDetails$: Observable<UserDetail> | undefined;
 
   constructor(private authService: AuthService) {
   }
+
   ngOnInit() {
     this.userDetails$ = this.authService.getDetail();
   }
