@@ -22,6 +22,7 @@ import {tokenInterceptor} from "./interceptor/token.interceptor";
 import {VillageDetailsComponent} from './pages/village-details/village-details.component';
 import {MatCardModule} from "@angular/material/card";
 import {VillageAddComponent} from "./pages/village-add/village-add.component";
+import {VillageUpdateComponent} from './pages/village-update/village-update.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {VillageAddComponent} from "./pages/village-add/village-add.component";
     RegisterComponent,
     AccountComponent,
     VillageDetailsComponent,
-    VillageAddComponent
+    VillageAddComponent,
+    VillageUpdateComponent
   ],
   imports: [
     BrowserModule,

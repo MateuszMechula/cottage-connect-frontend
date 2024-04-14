@@ -1,14 +1,15 @@
-<div class="h-screen flex items-center justify-center">
-  <form class="shadow-md rounded-md p-5 bg-white w-1/2 flex flex-wrap" (ngSubmit)="addVillage()">
+<div class="h-auto flex items-center justify-center">
+  <form class="shadow-md rounded-md p-5 bg-white w-full max-w-2xl flex flex-wrap" (ngSubmit)="updateVillage()">
     <div class="py-4 w-full">
-      <h1 class="font-bold next-left py-2">Add</h1>
-      <h6 class="text-slate-600 text-base">Create your Village</h6>
+      <h1 class="font-bold next-left py-2">Update</h1>
+      <h6 class="text-slate-600 text-base">Update your Village</h6>
     </div>
 
     <div class="w-1/2 pr-2">
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Street</mat-label>
-        <input matInput type="text" [formControl]="villageAddressForm.controls.street" placeholder="Enter street name">
+        <input matInput type="text" [formControl]="villageAddressForm.controls.street"
+               placeholder="Enter street name">
         <mat-error
           *ngIf="villageAddressForm.controls.street.invalid">{{ getErrorMessage(villageAddressForm.controls.street) }}
         </mat-error>
@@ -33,7 +34,7 @@
       </mat-form-field>
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Voivodeship</mat-label>
-        <mat-select name="voivodeship">
+        <mat-select name="voivodeship" [formControl]="villageAddressForm.controls.voivodeship">
           <mat-option *ngFor="let voivodeship of voivodeships" [value]="voivodeship">
             {{ voivodeship }}
           </mat-option>
@@ -50,7 +51,8 @@
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Name</mat-label>
         <input matInput type="text" [formControl]="villageAddForm.controls.name" placeholder="Enter name">
-        <mat-error *ngIf="villageAddForm.controls.name.invalid">{{ getErrorMessage(villageAddForm.controls.name) }}
+        <mat-error
+          *ngIf="villageAddForm.controls.name.invalid">{{ getErrorMessage(villageAddForm.controls.name) }}
         </mat-error>
         <mat-icon matPrefix>label</mat-icon>
       </mat-form-field>
@@ -66,9 +68,8 @@
 
     <button class="w-full border-collapse text-white rounded-md border-slate-200 disabled:bg-purple-400 py-2 px-3
       bg-purple-700" type="submit" [disabled]="villageAddForm.invalid && villageAddressForm.invalid">
-      Add
+      Update
     </button>
 
   </form>
 </div>
-

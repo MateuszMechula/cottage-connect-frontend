@@ -1,21 +1,42 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {VillagesService} from "../../services/villages.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HttpErrorResponse} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 import {VillageDetail} from "../../interfaces/village-detail";
+import {MatDialog} from "@angular/material/dialog";
+import {VillageUpdateComponent} from "../village-update/village-update.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-villages',
   templateUrl: './village-details.component.html',
   styleUrl: './village-details.component.css'
 })
-export class VillageDetailsComponent {
+export class VillageDetailsComponent implements OnInit {
   village$ = new BehaviorSubject<VillageDetail[]>([]);
 
   constructor(private villagesService: VillagesService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private dialog: MatDialog,
+              private router: Router) {
+  }
+
+  ngOnInit() {
     this.loadVillages();
+  }
+
+  openDialog(village: VillageDetail) {
+    const dialogRef = this.dialog.open(VillageUpdateComponent, {
+      data: village,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.loadVillages();
+        this.router.navigateByUrl('/villages');
+      }
+    });
   }
 
   getVillages() {

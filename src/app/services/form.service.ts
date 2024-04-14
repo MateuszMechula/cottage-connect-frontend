@@ -90,7 +90,7 @@ export class FormService {
         nonNullable: true,
       }),
       description: new FormControl('', {
-        validators: [Validators.required, Validators.maxLength(200)],
+        validators: [Validators.required, Validators.maxLength(255)],
         nonNullable: true,
       })
     });
