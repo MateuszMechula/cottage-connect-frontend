@@ -1,6 +1,15 @@
 <mat-card *ngFor="let village of village$ | async" class="village-card w-1/2 m-2">
   <mat-card-header>
     <mat-card-title>{{ village.name }}</mat-card-title>
+    <!--    <div class="flex justify-center mb-4">-->
+    <!--      <ng-container *ngIf="userPhotoUrl; else noPhoto">-->
+    <!--        <img [src]="userPhotoUrl" alt="{{village?.name}}"-->
+    <!--             class="w-40 h-40 object-cover border border-gray-300 rounded-full">-->
+    <!--      </ng-container>-->
+    <!--      <ng-template #noPhoto>-->
+    <!--        <div class="w-40 h-40 bg-gray-200 border border-gray-300 rounded-full"></div>-->
+    <!--      </ng-template>-->
+    <!--    </div>-->
   </mat-card-header>
   <mat-card-content>
     <div class="card-content-group">

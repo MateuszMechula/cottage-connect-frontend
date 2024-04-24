@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {VillageDetail} from "../interfaces/village-detail";
@@ -40,6 +40,13 @@ export class VillagesService {
 
   getErrorMessage(control: FormControl) {
     return this.formService.getErrorMessage(control);
+  }
+
+  getVillagePhoto(): Observable<string> {
+    return this.http.get(`${this.apiUrl}photos/user`, {responseType: 'blob'})
+      .pipe(
+        map(blob => URL.createObjectURL(blob))
+      );
   }
 
   getAllVillages = (): Observable<VillageDetail[]> => this.http.get<VillageDetail[]>(`${this.apiUrl}villages`);

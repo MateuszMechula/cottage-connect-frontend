@@ -7,6 +7,7 @@ import {VillageDetail} from "../../interfaces/village-detail";
 import {MatDialog} from "@angular/material/dialog";
 import {VillageUpdateComponent} from "../village-update/village-update.component";
 import {Router} from "@angular/router";
+import {SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-villages',
@@ -15,6 +16,7 @@ import {Router} from "@angular/router";
 })
 export class VillageDetailsComponent implements OnInit {
   village$ = new BehaviorSubject<VillageDetail[]>([]);
+  villagePhotoUrl: SafeUrl | null = null;
 
   constructor(private villagesService: VillagesService,
               private snackBar: MatSnackBar,
@@ -50,6 +52,17 @@ export class VillageDetailsComponent implements OnInit {
       }
     })
   }
+
+  // loadVillagePhoto() {
+  //   this.villagesService.getUserPhoto().subscribe({
+  //     next: (photoUrl) => {
+  //       this.userPhotoUrl = this.domSanitizer.bypassSecurityTrustUrl(photoUrl);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error loading village photo', err);
+  //     }
+  //   });
+  // }
 
   deleteVillage(villageId: number) {
     this.villagesService.deleteVillageById(villageId).subscribe({

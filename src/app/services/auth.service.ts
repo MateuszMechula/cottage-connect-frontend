@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   getDetail(): Observable<UserDetail> {
-    return this.http.get<UserDetail>(`${this.apiUrl}auth/account/details`);
+    return this.http.get<UserDetail>(`${this.apiUrl}users/account/details`);
   }
 
 

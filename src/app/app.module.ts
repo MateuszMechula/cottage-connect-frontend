@@ -23,6 +23,8 @@ import {VillageDetailsComponent} from './pages/village-details/village-details.c
 import {MatCardModule} from "@angular/material/card";
 import {VillageAddComponent} from "./pages/village-add/village-add.component";
 import {VillageUpdateComponent} from './pages/village-update/village-update.component';
+import {AccountUpdateComponent} from './pages/account-update/account-update.component';
+import {FooterComponent} from './components/footer/footer.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import {VillageUpdateComponent} from './pages/village-update/village-update.comp
     AccountComponent,
     VillageDetailsComponent,
     VillageAddComponent,
-    VillageUpdateComponent
+    VillageUpdateComponent,
+    AccountUpdateComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

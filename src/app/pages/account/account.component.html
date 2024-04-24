@@ -4,6 +4,15 @@
       Account Details
     </h1>
     <div *ngIf="userDetails$ | async as user" class="grid grid-cols-1 gap-2 text-gray-800">
+      <div class="flex justify-center mb-4">
+        <ng-container *ngIf="userPhotoUrl; else noPhoto">
+          <img [src]="userPhotoUrl" alt="{{user?.firstname}} {{user?.lastname}}"
+               class="w-40 h-40 object-cover border border-gray-300 rounded-full">
+        </ng-container>
+        <ng-template #noPhoto>
+          <div class="w-40 h-40 bg-gray-200 border border-gray-300 rounded-full"></div>
+        </ng-template>
+      </div>
       <div class="flex items-center justify-between">
         <h2 class="text-gray-600 font-bold">Email:</h2>
         <p>{{ user.email }}</p>
@@ -25,5 +34,10 @@
         <p>{{ user.phone }}</p>
       </div>
     </div>
+    <mat-card-actions>
+      <button class="w-1/4 border-collapse text-white rounded-md border-slate-200 py-2 px-3 bg-green-600 m-1"
+              (click)="openDialog(userDetails$)">Update
+      </button>
+    </mat-card-actions>
   </div>
 </div>
